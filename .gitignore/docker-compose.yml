@@ -1,0 +1,26 @@
+version: '3'
+services:
+  batches:
+    depends_on:
+         - rabbit
+    build: ./batches
+    ports:
+     - "3000:3000"
+  students:
+    depends_on:
+         - rabbit
+    build: ./students
+    ports:
+     - "3001:3001"
+  training:
+    depends_on:
+         - rabbit
+    build: ./training
+    ports:
+     - "3002:3002"
+  gateway:
+      build: ./Gateway
+      ports:
+       - "3006:3006"
+  rabbit:
+    image: "rabbitmq:3"
